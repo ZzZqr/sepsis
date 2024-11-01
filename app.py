@@ -31,11 +31,11 @@ if st.button('Predict'):
     input_features = [[SOFA, new_onset_shock, MDR, los_of_ICU, TBIL, SCr, pre_shock, area_of_burn, three, inhalation_damage, ALB]]
 
     # 使用加载的模型进行预测
-    prediction = loaded_model.predict(input_features)
+    prediction = loaded_model.predict_proba(input_features)
     print(prediction)
 
     # 显示预测结果
-    st.write(f'Prediction:{prediction[0]}')
+    st.write(f'Prediction:{prediction[0][0]}')
 
 # # 运行Streamlit应用程序
 # if __name__ == '__main__':
