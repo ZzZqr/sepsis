@@ -41,6 +41,10 @@ if inhalation_damage == "Yes":
     inhalation_damage = 1
 else:
     inhalation_damage = 0
+if DBIL >= 7:
+    DBIL = 1
+else:
+    DBIL = 0
 
 # 定义应用程序行为
 if st.button('Predict'):
