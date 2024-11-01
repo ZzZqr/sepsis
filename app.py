@@ -16,7 +16,7 @@ new_onset_shock = st.selectbox('new_onset_shock', options=["Yes", "No"])
 DBIL = st.number_input('DBIL (μmol/L)', min_value=0.00, max_value=50.00, step=0.01)
 SOFA = st.number_input('SOFA', min_value=0, max_value=9, step=1)
 MDR = st.selectbox('MDR', options=["Yes", "No"])
-los_of_ICU = st.number_input('Los_of_ICU', min_value=1, max_value=150, step=1)
+los_of_ICU = st.number_input('Los_of_ICU (day)', min_value=1, max_value=150, step=1)
 TBIL = st.number_input('TBIL (μmol/L)', min_value=1.0, max_value=100.0, step=0.1)
 SCr = st.number_input('SCr (μmol/L)', min_value=0.0, max_value=300.0, step=0.1)
 pre_shock = st.selectbox('pre_shock', options=["Yes", "No"])
@@ -52,7 +52,7 @@ if st.button('Predict'):
     print(prediction)
 
     # 显示预测结果
-    st.write(f'Prediction:{prediction[0][0]}')
+    st.write(f'Sepsis Probability Prediction:{prediction[0][0]}')
 
 # # 运行Streamlit应用程序
 # if __name__ == '__main__':
