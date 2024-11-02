@@ -2,15 +2,26 @@ import numpy as np
 import streamlit as st
 import joblib
 import pandas as pd
+from imblearn.over_sampling import SMOTE
+from sklearn.ensemble import VotingClassifier, RandomForestClassifier
 from sklearn.preprocessing import StandardScaler
 
-# 定义模型文件的完整路径
-model_path = 'model/rf_model.pkl'
-scaler_path = 'model/rf_scaler.joblib'
+data = pd.read_csv("./data/sepsis_new.csv")
+X = data.drop('sepsis', axis=1)
+y = data['sepsis']
+saved_model = RandomForestClassifier(random_state=41, n_estimators=100)
+X = X[["area_of_burn", "III", "pre_shock", "Inhalation_Damage", "LOS_of_ICU", "new_onset_shock", "MDR", "TBIL", "ALB", "SCr", "SOFA"]]
+y = data['sepsis']
+smote = SMOTE(random_state=42)
+X, y = smote.fit_resample(X, y)
+scaler = StandardScaler()
+X = scaler.fit_transform(X)
+saved_model.fit(X,y)
+# joblib.dump(saved_model, '/model/rf_model.joblib')
 
 # 加载模型
-scaler = joblib.load(scaler_path)
-loaded_model = joblib.load(model_path)
+# scaler = joblib.load(scaler_path)
+# loaded_model = joblib.load(model_path)
 # 加载之前训练好的模型
 
 # 创建Streamlit应用程序界面
@@ -59,7 +70,7 @@ if st.button('Predict'):
     df = pd.DataFrame(input_features, columns=["area_of_burn", "III", "pre_shock", "Inhalation_Damage", "LOS_of_ICU", "new_onset_shock", "MDR", "TBIL", "ALB", "SCr", "SOFA"])
     df = scaler.fit_transform(df)
     # 使用加载的模型进行预测
-    prediction = loaded_model.predict_proba(df)
+    prediction = saved_model.predict_proba(df)
     print(prediction)
     f = round(float(prediction[0][1]), 3)
 
@@ -69,13 +80,12 @@ if st.button('Predict'):
 # # 运行Streamlit应用程序
 # if __name__ == '__main__':
 #     # st.run()
-#     loaded_model = joblib.load(model_path)
+#     # loaded_model = joblib.load(model_path)
 #     input_features = np.array(
 #         [[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]])
 #     df = pd.DataFrame(input_features,
 #                       columns=["area_of_burn", "III", "pre_shock", "Inhalation_Damage", "LOS_of_ICU", "new_onset_shock",
 #                                "MDR", "TBIL", "ALB", "SCr", "SOFA"])
-#     scaler = StandardScaler()
 #     df = scaler.fit_transform(df)
 #     # 使用加载的模型进行预测
 #     prediction = loaded_model.predict_proba(df)
