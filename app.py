@@ -60,12 +60,11 @@ if st.button('Predict'):
     df = scaler.fit_transform(df)
     # 使用加载的模型进行预测
     prediction = loaded_model.predict_proba(df)
-    predictio = loaded_model.predict(df)
     print(prediction)
-    print(predictio)
+    f = round(float(prediction[0][1]), 3)
 
     # 显示预测结果
-    st.write(f'Sepsis Probability Prediction:{prediction[0][1]}')
+    st.write(f'Sepsis Probability Prediction:{f}')
 
 # # 运行Streamlit应用程序
 # if __name__ == '__main__':
