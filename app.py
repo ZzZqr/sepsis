@@ -9,8 +9,8 @@ model_path = 'model/rf_model.joblib'
 scaler_path = 'model/rf_scaler.joblib'
 
 # 加载模型
-loaded_model = joblib.load(model_path)
 scaler = joblib.load(scaler_path)
+loaded_model = joblib.load(model_path)
 # 加载之前训练好的模型
 
 # 创建Streamlit应用程序界面
