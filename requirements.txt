@@ -1,4 +1,4 @@
-joblib
+imblearn
 scikit-learn
 numpy
 pandas
