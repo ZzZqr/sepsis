@@ -2,11 +2,15 @@ import numpy as np
 import streamlit as st
 import joblib
 import pandas as pd
+from sklearn.preprocessing import StandardScaler
+
 # 定义模型文件的完整路径
-model_path = 'model/rf_model.pkl'
+model_path = 'model/rf_model.joblib'
+scaler_path = 'model/rf_scaler.joblib'
 
 # 加载模型
 loaded_model = joblib.load(model_path)
+scaler = joblib.load(scaler_path)
 # 加载之前训练好的模型
 
 # 创建Streamlit应用程序界面
@@ -53,14 +57,29 @@ if st.button('Predict'):
     # 将用户输入的特征转换为模型所需的输入格式
     input_features = np.array([[area_of_burn, three, pre_shock, inhalation_damage, los_of_ICU, new_onset_shock, MDR, TBIL, ALB, SCr, SOFA]])
     df = pd.DataFrame(input_features, columns=["area_of_burn", "III", "pre_shock", "Inhalation_Damage", "LOS_of_ICU", "new_onset_shock", "MDR", "TBIL", "ALB", "SCr", "SOFA"])
+    df = scaler.fit_transform(df)
     # 使用加载的模型进行预测
     prediction = loaded_model.predict_proba(df)
+    predictio = loaded_model.predict(df)
     print(prediction)
+    print(predictio)
 
     # 显示预测结果
-    st.write(f'Sepsis Probability Prediction:{prediction[0][0]}')
+    st.write(f'Sepsis Probability Prediction:{prediction[0][1]}')
 
 # # 运行Streamlit应用程序
 # if __name__ == '__main__':
-#     st.run()
+    # st.run()
+    # loaded_model = joblib.load(model_path)
+    # input_features = np.array(
+    #     [[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]])
+    # df = pd.DataFrame(input_features,
+    #                   columns=["area_of_burn", "III", "pre_shock", "Inhalation_Damage", "LOS_of_ICU", "new_onset_shock",
+    #                            "MDR", "TBIL", "ALB", "SCr", "SOFA"])
+    # scaler = StandardScaler()
+    # df = scaler.fit_transform(df)
+    # # 使用加载的模型进行预测
+    # prediction = loaded_model.predict_proba(df)
+    # print(prediction)
+
 
