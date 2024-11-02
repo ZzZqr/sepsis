@@ -5,7 +5,7 @@ import pandas as pd
 from sklearn.preprocessing import StandardScaler
 
 # 定义模型文件的完整路径
-model_path = 'model/rf_model.joblib'
+model_path = 'model/rf_model.pkl'
 scaler_path = 'model/rf_scaler.joblib'
 
 # 加载模型
