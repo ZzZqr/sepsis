@@ -68,17 +68,17 @@ if st.button('Predict'):
 
 # # 运行Streamlit应用程序
 # if __name__ == '__main__':
-    # st.run()
-    # loaded_model = joblib.load(model_path)
-    # input_features = np.array(
-    #     [[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]])
-    # df = pd.DataFrame(input_features,
-    #                   columns=["area_of_burn", "III", "pre_shock", "Inhalation_Damage", "LOS_of_ICU", "new_onset_shock",
-    #                            "MDR", "TBIL", "ALB", "SCr", "SOFA"])
-    # scaler = StandardScaler()
-    # df = scaler.fit_transform(df)
-    # # 使用加载的模型进行预测
-    # prediction = loaded_model.predict_proba(df)
-    # print(prediction)
+#     # st.run()
+#     loaded_model = joblib.load(model_path)
+#     input_features = np.array(
+#         [[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]])
+#     df = pd.DataFrame(input_features,
+#                       columns=["area_of_burn", "III", "pre_shock", "Inhalation_Damage", "LOS_of_ICU", "new_onset_shock",
+#                                "MDR", "TBIL", "ALB", "SCr", "SOFA"])
+#     scaler = StandardScaler()
+#     df = scaler.fit_transform(df)
+#     # 使用加载的模型进行预测
+#     prediction = loaded_model.predict_proba(df)
+#     print(prediction)
 
 
