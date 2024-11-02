@@ -3,16 +3,16 @@ import streamlit as st
 import joblib
 import pandas as pd
 from imblearn.over_sampling import SMOTE
-from sklearn.ensemble import VotingClassifier, RandomForestClassifier
+from sklearn.ensemble import RandomForestClassifier
 from sklearn.preprocessing import StandardScaler
 
 data = pd.read_csv("./data/sepsis_new.csv")
 X = data.drop('sepsis', axis=1)
 y = data['sepsis']
-saved_model = RandomForestClassifier(random_state=41, n_estimators=100)
+saved_model = RandomForestClassifier(n_estimators=300)
 X = X[["area_of_burn", "III", "pre_shock", "Inhalation_Damage", "LOS_of_ICU", "new_onset_shock", "MDR", "TBIL", "ALB", "SCr", "SOFA"]]
 y = data['sepsis']
-smote = SMOTE(random_state=42)
+smote = SMOTE()
 X, y = smote.fit_resample(X, y)
 scaler = StandardScaler()
 X = scaler.fit_transform(X)
