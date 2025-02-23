@@ -1,4 +1,4 @@
-imblearn
-scikit-learn
-numpy
-pandas
+joblib==1.4.2
+scikit-learn==1.0.2
+numpy==1.26.4
+pandas==1.5.3
