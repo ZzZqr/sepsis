@@ -101,8 +101,8 @@ MDR = st.selectbox('MDR', options=["Yes", "No"])
 area_of_burn = st.number_input('area_of_burn (%)', min_value=10, max_value=100, step=1)
 three = st.number_input('Ⅲ (%)', min_value=0, max_value=100, step=1)
 ALB = st.number_input('ALB (g/L)', min_value=5.0, max_value=50.0, step=0.1)
-BUN = st.number_input('BUN', min_value=1.00, max_value=20.00, step=0.01)
-WBC = st.number_input('WBC', min_value=3.00, max_value=75.00, step=0.01)
+BUN = st.number_input('BUN (mmol/L)', min_value=1.00, max_value=20.00, step=0.01)
+WBC = st.number_input('WBC (×10\N{SUPERSCRIPT NINE}/L)', min_value=3.00, max_value=75.00, step=0.01)
 
 if new_onset_shock == "Yes":
     new_onset_shock = 1
