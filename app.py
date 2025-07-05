@@ -120,8 +120,8 @@ scaler = joblib.load('./model/rf_scaler.joblib')
 # 定义应用程序行为
 if st.button('Predict'):
     # 将用户输入的特征转换为模型所需的输入格式
-    input_features = np.array([[area_of_burn, three, new_onset_shock, MDR, WBC, ALB, BUN, SOFA]])
-    df = pd.DataFrame(input_features, columns=["area_of_burn", "III", "new_onset_shock", "Inhalation Damage", "WBC", "ALB", "BUN", "SOFA"])
+    input_features = np.array([[area_of_burn, three, MDR, new_onset_shock, WBC, ALB, BUN, SOFA]])
+    df = pd.DataFrame(input_features, columns=["area_of_burn", "III", "Inhalation Damage", "new_onset_shock", "WBC", "ALB", "BUN", "SOFA"])
     df = scaler.transform(df)
     print(df)
 
