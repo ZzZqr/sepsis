@@ -116,7 +116,6 @@ else:
 
 scaler = joblib.load('./model/rf_scaler.joblib')
 
-
 # 定义应用程序行为
 if st.button('Predict'):
     # 将用户输入的特征转换为模型所需的输入格式
