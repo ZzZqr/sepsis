@@ -95,9 +95,9 @@ loaded_model = joblib.load(model_path)
 st.title('RF Model Deployment')
 st.write('Enter some input features to make predictions:')
 
-new_onset_shock = st.selectbox('new_onset_shock', options=["Yes", "No"])
+new_onset_shock = st.selectbox('New Onset Shock', options=["Yes", "No"])
 SOFA = st.number_input('SOFA', min_value=0, max_value=9, step=1)
-MDR = st.selectbox('MDR', options=["Yes", "No"])
+MDR = st.selectbox("Inhalation Damage", options=["Yes", "No"])
 area_of_burn = st.number_input('TBSA burned (%)', min_value=10, max_value=100, step=1)
 three = st.number_input('Ⅲ (%)', min_value=0, max_value=100, step=1)
 ALB = st.number_input('ALB (g/L)', min_value=5.0, max_value=50.0, step=0.1)
@@ -121,7 +121,7 @@ scaler = joblib.load('./model/rf_scaler.joblib')
 if st.button('Predict'):
     # 将用户输入的特征转换为模型所需的输入格式
     input_features = np.array([[area_of_burn, three, new_onset_shock, MDR, WBC, ALB, BUN, SOFA]])
-    df = pd.DataFrame(input_features, columns=["area_of_burn", "III", "new_onset_shock", "MDR", "WBC", "ALB", "BUN", "SOFA"])
+    df = pd.DataFrame(input_features, columns=["area_of_burn", "III", "new_onset_shock", "Inhalation Damage", "WBC", "ALB", "BUN", "SOFA"])
     df = scaler.transform(df)
     print(df)
 
